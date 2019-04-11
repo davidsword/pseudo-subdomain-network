@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/npsdds\n"
-"POT-Creation-Date: 2019-04-11 15:39:42+00:00\n"
+"POT-Creation-Date: 2019-04-11 16:46:29+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,21 +25,25 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 
 #: network-pseduo-sub-domains.php:68
-msgid "Sub Domain Map"
+msgid "Domain Map Subdomain"
 msgstr ""
 
 #: network-pseduo-sub-domains.php:73
-msgid "Domain Map this new site as a subdomain"
+msgid "Map this new site slug as a subdomain"
 msgstr ""
 
-#: network-pseduo-sub-domains.php:78
-msgid "Set sites %s and %s option values to"
+#: network-pseduo-sub-domains.php:76
+msgid "Enter a Site Address above to enable this option."
 msgstr ""
 
-#: network-pseduo-sub-domains.php:116
-msgid "Nice try."
+#: network-pseduo-sub-domains.php:81
+msgid "Set the new sites %s and %s option values to"
 msgstr ""
 
 #: network-pseduo-sub-domains.php:119
+msgid "Nice try."
+msgstr ""
+
+#: network-pseduo-sub-domains.php:122
 msgid "You do not have sufficient permissions to add sites to this network."
 msgstr ""
