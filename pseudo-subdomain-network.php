@@ -42,7 +42,7 @@ class Network_pseudo_Sub_Domains {
 	 */
 	public function hook_into_wp() {
 
-		// The follow hooks are very specific, so we don't need to do any page_hook condtionals.
+		// The follow hooks are very specific, so we don't need to do any page_hook conditionals.
 		add_action( 'admin_print_footer_scripts-site-new.php', [ $this, 'enqueue_script' ] );
 		add_action( 'network_site_new_form', [ $this, 'add_network_form_row' ], 99 );
 
@@ -51,7 +51,7 @@ class Network_pseudo_Sub_Domains {
 	}
 
 	/**
-	 * Add a feild to Network » Sites » Create New.
+	 * Add a field to Network » Sites » Create New.
 	 *
 	 * Will add a checkbox to "Map this site as a subdomain"
 	 * The JS populates a preview of what the subdomain will look like, based on the slug entered.
@@ -149,7 +149,7 @@ class Network_pseudo_Sub_Domains {
 		 */
 		$new_blog_details = [
 			'domain' => $new_domain,
-			'path'   => $network_url['path']
+			'path'   => $network_url['path'],
 		];
 		update_blog_details( $blog_id, $new_blog_details );
 		update_option( 'home', $new_url );
@@ -160,7 +160,7 @@ class Network_pseudo_Sub_Domains {
 	}
 
 	/**
-	 * Get network URL detials.
+	 * Get network URL details.
 	 *
 	 * Note that the domain strips the "www." out.
 	 *
