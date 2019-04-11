@@ -65,14 +65,14 @@ class Network_Pseduo_Sub_Domains {
 		<table id='domain-mapping-options-holder'>
 			<tr class="form-field" id="domain-mapping-options">
 				<th scope="row">
-					<label for="domain-map"><?php esc_html_e( 'Sub Domain Map', 'npsdds' ); ?></label>
+					<?php esc_html_e( 'Sub Domain Map', 'npsdds' ); ?>
 				</th>
 				<td>
-					<label>
-						<input name="blog[domain_map]" type="checkbox" id="domain-map" required="" value="1" checked>
+					<input name="blog[domain_map]" type="checkbox" id="domain-map" required="" value="1">
+					<label for="domain-map">
 						<?php esc_html_e( 'Domain Map this new site as a subdomain', 'npsdds' ); ?>
 					</label><br />
-					<p class='description'>
+					<p class='description' id='domain-map--description'>
 						<?php
 						echo sprintf(
 							esc_html__( 'Set sites %s and %s option values to', 'npsdds' ),
