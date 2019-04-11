@@ -9,7 +9,7 @@ module.exports = function( grunt ) {
 
 		addtextdomain: {
 			options: {
-				textdomain: 'network-pseduo-sub-domains',
+				textdomain: 'npsdds',
 			},
 			update_all_domains: {
 				options: {
@@ -32,8 +32,8 @@ module.exports = function( grunt ) {
 				options: {
 					domainPath: '/languages',
 					exclude: [ '\.git/*', 'bin/*', 'node_modules/*', 'tests/*' ],
-					mainFile: 'network-pseduo-sub-domains.php',
-					potFilename: 'network-pseduo-sub-domains.pot',
+					mainFile: 'npsdds.php',
+					potFilename: 'npsdds.pot',
 					potHeaders: {
 						poedit: true,
 						'x-poedit-keywordslist': true
