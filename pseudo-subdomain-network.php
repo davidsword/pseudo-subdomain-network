@@ -19,8 +19,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Don't waste resources loading if not admin or not proper Network setup.
  *
- * @TODO check for www ? `strstr( get_network()->domain, 'www.' )`
- * @TODO add an admin_notice here.
+ * @TODO add an `admin_notice` to let admin know why the plugin might not be working.
  */
 if ( ! is_admin() || ! is_multisite() || is_subdomain_install() ) {
 	return;
@@ -125,10 +124,10 @@ class Network_pseudo_Sub_Domains {
 			return;
 		}
 
-		// Retrieve the just-created blog.
+		// Retrieve the just-created blog path from the database.
 		$slug = trim( get_blog_details( $blog_id )->path, '/' );
 
-		// Don't make things complicated.
+		// Don't make things complicated, if www just ignore, edge case.
 		if ( 'www' === $slug ) {
 			return;
 		}
@@ -136,7 +135,7 @@ class Network_pseudo_Sub_Domains {
 		// Get the network domain and path.
 		$network_url = $this->get_network_url_parts();
 
-		// Build and deconstruct the new URL.
+		// Build the new URL.
 		$new_domain = $slug . '.' . $network_url['domain'];
 		$new_url    = esc_url( $network_url['scheme'] . $new_domain . $network_url['path'] );
 
@@ -146,7 +145,7 @@ class Network_pseudo_Sub_Domains {
 		/**
 		 * Domain map the subdomain!
 		 *
-		 * @see https://wordpress.org/support/article/wordpress-multisite-map-subdomainping/
+		 * @see https://wordpress.org/support/article/wordpress-multisite-domain-mapping/
 		 */
 		$new_blog_details = [
 			'domain' => $new_domain,
