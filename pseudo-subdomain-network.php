@@ -1,13 +1,14 @@
 <?php
 /**
- * Plugin Name:     pseudo-subdomain-network
+ * Plugin Name:     Pseudo Subdomain Network
  * Plugin URI:      https://github.com/davidsword/pseudo-subdomain-network/
- * Description:     Plugin - For subfolder networks, have the Create New Site form site the home and siteurl's to a subdomain
+ * Description:     On a WordPress Network site, using a Subdirectories (path-based) install for sub sites, this plugin adds an option in to quickly Domain Map the Subdirectory site as a subdomain of the network.
  * Author:          davidsword
  * Author URI:      https://davidsword.ca/
  * Text Domain:     psdn
  * Domain Path:     /languages
  * Version:         1.0.0
+ * Network:         true
  *
  * @package         pseudo-subdomain-network
  */
