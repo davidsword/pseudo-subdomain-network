@@ -58,10 +58,7 @@ class Network_pseudo_Sub_Domains {
 	 * The JS populates a preview of what the subdomain will look like, based on the slug entered.
 	 */
 	public function add_network_form_row() {
-		$new_domain = preg_replace( '|^www\.|', '', get_network()->domain );
-		$path       = get_network()->path;
-		$add_path   = ( '/' === $path ) ? '' : $path;
-		$prefix     = is_ssl() ? 'https' : 'http';
+		$network_url = $this->get_network_url_parts();
 		?>
 		<table id='psdn--holder'>
 			<tr class="form-field" id="psdn--tr-row">
@@ -80,13 +77,13 @@ class Network_pseudo_Sub_Domains {
 						<?php
 						echo sprintf(
 							// translators: database options names.
-							esc_html__( 'Set the new sites %1$s and %2$s option values to', 'psdn' ),
+							esc_html__( 'This will set the domain, %1$s and %2$s option values to', 'psdn' ),
 							'<strong>home</strong>',
 							'<strong>siteurl</strong>'
 						);
 						?>
 						<code>
-							<?php echo esc_html( $prefix ) . '://'; ?><span id='psdn--subdomain-preview'></span>.<?php echo esc_html( $new_domain . $add_path ); ?>
+							<?php echo esc_html( $network_url['scheme'] ); ?><span id='psdn--subdomain-preview'></span>.<?php echo esc_html( $network_url['domain'] . $network_url['path'] ); ?>
 						</code>
 					</p>
 				</td>
@@ -137,13 +134,11 @@ class Network_pseudo_Sub_Domains {
 		}
 
 		// Get the network domain and path.
-		$network_domain = preg_replace( '|^www\.|', '', get_network()->domain );
-		$network_path   = get_network()->path;
-		$scheme         = is_ssl() ? 'https' : 'http';
+		$network_url = $this->get_network_url_parts();
 
 		// Build and deconstruct the new URL.
-		$domain  = $slug . '.' . $network_domain;
-		$new_url = esc_url( $scheme . '://' . $domain . $network_path );
+		$new_domain = $slug . '.' . $network_url['domain'];
+		$new_url    = esc_url( $network_url['scheme'] . $new_domain . $network_url['path'] );
 
 		// The ol' switcher'oo.
 		switch_to_blog( $blog_id );
@@ -154,8 +149,8 @@ class Network_pseudo_Sub_Domains {
 		 * @see https://wordpress.org/support/article/wordpress-multisite-map-subdomainping/
 		 */
 		$new_blog_details = [
-			'domain' => $domain,
-			'path'   => $network_path
+			'domain' => $new_domain,
+			'path'   => $network_url['path']
 		];
 		update_blog_details( $blog_id, $new_blog_details );
 		update_option( 'home', $new_url );
@@ -163,6 +158,24 @@ class Network_pseudo_Sub_Domains {
 
 		// The ol' switcher'oo, back to the network admin.
 		restore_current_blog();
+	}
+
+	/**
+	 * Get network URL detials.
+	 *
+	 * Note that the domain strips the "www." out.
+	 *
+	 * @return array URL parts of network URL.
+	 */
+	public function get_network_url_parts() {
+		$scheme = is_ssl() ? 'https' : 'http';
+		$domain = preg_replace( '|^www\.|', '', get_network()->domain );
+		$path   = get_network()->path;
+		return [
+			'scheme' => $scheme . '://',
+			'domain' => $domain,
+			'path'   => $path,
+		];
 	}
 
 }
