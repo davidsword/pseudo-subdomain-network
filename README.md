@@ -1,13 +1,13 @@
-# pseudo-subdomain-network #
-**Contributors:**      davidsword
-**Donate link:**       https://wordpressfoundation.org/donate/
-**Tags:**              network, multisite, subdomain, rewrites
-**Requires at least:** 5.0
-**Tested up to:**      5.1.1
-**Stable tag:**        0.1.0
-**Requires PHP:**      7.1
-**License:**           GPLv2 or later
-**License URI:**       https://www.gnu.org/licenses/gpl-2.0.html
+# Pseudo Subdomain Network #
+**Contributors:**      davidsword  
+**Donate link:**       https://wordpressfoundation.org/donate/  
+**Tags:**              network, multisite, subdomain, domain map, mapping  
+**Requires at least:** 5.0  
+**Tested up to:**      5.1.1  
+**Stable tag:**        0.1.0  
+**Requires PHP:**      7.1  
+**License:**           GPLv2 or later  
+**License URI:**       https://www.gnu.org/licenses/gpl-2.0.html  
 
 Plugin - For subfolder networks, have the Create New Site form site the home and siteurl's to a subdomain
 
@@ -19,7 +19,7 @@ On a [WordPress Network](https://codex.wordpress.org/Create_A_Network) site, usi
 
 For example, if you create the site `example.com/siteone/`, this plugin add an option to set the new websites `home` and `siteurl` values to `siteone.example.com/`. Once the form is submitted and the site create, the site will be mapped to the subdomain.
 
-```sql
+```
 +-----------+-------------+-----------------------------+----------+
 | option_id | option_name | option_value                | autoload |
 +-----------+-------------+-----------------------------+----------+
