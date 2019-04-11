@@ -13,7 +13,7 @@ On a WordPress Network site, using a Subdirectories (path-based) install for sub
 
 == Description ==
 
-On a [WordPress Network](https://codex.wordpress.org/Create_A_Network) site, using a Subdirectories (path-based) install for sub sites, this plugin adds an option in **Network » Sites » Add New Site** to quickly [Domain Map](https://wordpress.org/support/article/wordpress-multisite-map-subdomainping/) the Subdirectory site as a subdomain of the network.
+On a [WordPress Network](https://codex.wordpress.org/Create_A_Network) site, using a Subdirectories (path-based) install for sub sites, this plugin adds an option in **Network » Sites » Add New Site** to quickly [Domain Map](https://wordpress.org/support/article/wordpress-multisite-domain-mapping/) the Subdirectory site as a subdomain of the network.
 
 ![](screenshot-1.png)
 
