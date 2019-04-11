@@ -46,7 +46,7 @@ The plugin should either be installed as a mu-plugin or network activated. It's 
 
 ### Is a multisite setup the same as a network? ###
 
-Yes. The verbiage is interchangable.
+Yes. The verbiage is interchangeable.
 
 ### Does this plugin work when `SUBDOMAIN_INSTALL` is true? ###
 
@@ -58,13 +58,18 @@ No. This plugin only works when the network is a Subdirectories install.
 
 == Changelog ==
 
+= 1.1.0 =
+* April 11, 2019
+* Fixed - site needs to edit `wp_blogs` domain and path columns for domain mapping
+* Improved - documentation
+
 = 1.0.0 =
-* April 12, 2019
+* April 11, 2019
 * Stable init release
 
 == Contributors ==
 
-The following grunt tasks are avaliable during development:
+The following grunt tasks are available during development:
 
 * `grunt i18n` containing `addtextdomain` and `makepot`
 * `grunt readme` containing `wp_readme_to_markdown`
