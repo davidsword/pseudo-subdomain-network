@@ -6,14 +6,14 @@
 jQuery(document).ready( function($) {
 
 	// Unforunently, there's no hooks or filters so we need to "hack" this `tr` row into the table.
-	$('#npsdds--tr-row').insertAfter('table.form-table tr:nth-child(1)');
+	$('#psdn--tr-row').insertAfter('table.form-table tr:nth-child(1)');
 
 	// Wrapping the to-be-moved `tr` in a table keeps the browsers DOM happy, lets remove it now.
-	$('#npsdds--holder').remove();
+	$('#psdn--holder').remove();
 
 	// Take the slug entered and preview what a subdomain URL will look like.
 	const siteaddress = $('#site-address');
-	const subdomainmapping = $('#npsdds--subdomain-preview');
+	const subdomainmapping = $('#psdn--subdomain-preview');
 
 	siteaddress
 		.keyup( domainpreview )
@@ -29,15 +29,15 @@ jQuery(document).ready( function($) {
 			$('#map-subdomain').removeAttr( 'checked' );
 			$('#map-subdomain').attr( 'disabled', true );
 			$('label[for=map-subdomain]').css( 'opacity', '0.75' );
-			$('#npsdds--descirption-enabled').hide();
-			$('#npsdds--descirption-disabled').show().css( 'opacity', '0.75' );
+			$('#psdn--descirption-enabled').hide();
+			$('#psdn--descirption-disabled').show().css( 'opacity', '0.75' );
 		} else {
 			console.dir( 'not disabled' );
 			$('#map-subdomain').attr( 'checked', true );
 			$('#map-subdomain').removeAttr( 'disabled' );
 			$('label[for=map-subdomain]').css( 'opacity', '1' );
-			$('#npsdds--descirption-enabled').show();
-			$('#npsdds--descirption-disabled').hide();
+			$('#psdn--descirption-enabled').show();
+			$('#psdn--descirption-disabled').hide();
 		}
 	}
 

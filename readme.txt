@@ -1,7 +1,7 @@
-=== network-pseduo-sub-domains ===
+=== Pseudo Subdomain Network ===
 Contributors:      davidsword
 Donate link:       https://wordpressfoundation.org/donate/
-Tags:              network, multisite, subdomain, rewrites
+Tags:              network, multisite, subdomain, domain map, mapping
 Requires at least: 5.0
 Tested up to:      5.1.1
 Stable tag:        0.1.0
@@ -19,7 +19,7 @@ On a [WordPress Network](https://codex.wordpress.org/Create_A_Network) site, usi
 
 For example, if you create the site `example.com/siteone/`, this plugin add an option to set the new websites `home` and `siteurl` values to `siteone.example.com/`. Once the form is submitted and the site create, the site will be mapped to the subdomain.
 
-```sql
+```
 +-----------+-------------+-----------------------------+----------+
 | option_id | option_name | option_value                | autoload |
 +-----------+-------------+-----------------------------+----------+
@@ -28,7 +28,7 @@ For example, if you create the site `example.com/siteone/`, this plugin add an o
 +-----------+-------------+-----------------------------+----------+
 ```
 
-_Why_? Because some hosts do not allow WordPress networks as Subdomain installs, only Subdirectories. This plugin helps create a sort of Pseduo Subdomain Network, quickly mapping the new site.
+_Why_? Because some hosts do not allow WordPress networks as Subdomain installs, only Subdirectories. This plugin helps create a sort of pseudo Subdomain Network, quickly mapping the new site.
 
 These domains will only work out-of-the box if you've set wild card sub domains, or set the subdomains A records before hand. For more information please [see this page](https://codex.wordpress.org/Create_A_Network) or contact your hosting provider.
 
@@ -39,7 +39,7 @@ The plugin should either be installed as a mu-plugin or network activated. It's 
 1. Ensure your site is a [WordPress Network setup](https://codex.wordpress.org/Create_A_Network)
 	1. Using folders, not subdomain sub sites
 	1. & The primary domain must not include "www."
-1. Upload `/network-pseduo-sub-domains/` to `/wp-content/mu-plugins/` or `/wp-content/plugins/` directory
+1. Upload `/pseudo-subdomain-network/` to `/wp-content/mu-plugins/` or `/wp-content/plugins/` directory
 1. If uploaded to the latter, activate the plugin through the 'Network » Plugins' menu in WordPress
 
 == Frequently Asked Questions ==

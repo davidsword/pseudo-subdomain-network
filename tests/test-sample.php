@@ -2,7 +2,7 @@
 /**
  * Class SampleTest
  *
- * @package network-pseduo-sub-domains
+ * @package pseudo-subdomain-network
  */
 
 /**

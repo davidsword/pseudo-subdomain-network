@@ -1,15 +1,15 @@
 <?php
 /**
- * Plugin Name:     network-pseduo-sub-domains
- * Plugin URI:      https://github.com/davidsword/network-pseduo-sub-domains/
+ * Plugin Name:     pseudo-subdomain-network
+ * Plugin URI:      https://github.com/davidsword/pseudo-subdomain-network/
  * Description:     Plugin - For subfolder networks, have the Create New Site form site the home and siteurl's to a subdomain
  * Author:          davidsword
  * Author URI:      https://davidsword.ca/
- * Text Domain:     npsdds
+ * Text Domain:     psdn
  * Domain Path:     /languages
  * Version:         0.1.0
  *
- * @package         network-pseduo-sub-domains
+ * @package         pseudo-subdomain-network
  */
 
 // Prevent direct access.
@@ -26,9 +26,9 @@ if ( ! is_admin() || ! is_multisite() || is_subdomain_install() ) {
 }
 
 /**
- * Network_Pseduo_Sub_Domains
+ * Network_pseudo_Sub_Domains
  */
-class Network_Pseduo_Sub_Domains {
+class Network_pseudo_Sub_Domains {
 
 	/**
 	 * Build'r up!
@@ -62,29 +62,29 @@ class Network_Pseduo_Sub_Domains {
 		$add_path   = ( '/' === $path ) ? '' : $path;
 		$prefix     = is_ssl() ? 'https' : 'http';
 		?>
-		<table id='npsdds--holder'>
-			<tr class="form-field" id="npsdds--tr-row">
+		<table id='psdn--holder'>
+			<tr class="form-field" id="psdn--tr-row">
 				<th scope="row">
-					<?php esc_html_e( 'Domain Map Subdomain', 'npsdds' ); ?>
+					<?php esc_html_e( 'Domain Map Subdomain', 'psdn' ); ?>
 				</th>
 				<td>
 					<input name="blog[domain_map]" type="checkbox" id="map-subdomain" required="" value="1">
 					<label for="map-subdomain">
-						<?php esc_html_e( 'Map this new site slug as a subdomain', 'npsdds' ); ?>
+						<?php esc_html_e( 'Map this new site slug as a subdomain', 'psdn' ); ?>
 					</label><br />
-					<p class='description' id='npsdds--descirption-disabled'>
-						<?php esc_html_e( 'Enter a Site Address above to enable this option.', 'npsdds' ); ?>
+					<p class='description' id='psdn--descirption-disabled'>
+						<?php esc_html_e( 'Enter a Site Address above to enable this option.', 'psdn' ); ?>
 					</p>
-					<p class='description' id='npsdds--descirption-enabled'>
+					<p class='description' id='psdn--descirption-enabled'>
 						<?php
 						echo sprintf(
-							esc_html__( 'Set the new sites %s and %s option values to', 'npsdds' ),
+							esc_html__( 'Set the new sites %s and %s option values to', 'psdn' ),
 							'<strong>home</strong>',
 							'<strong>siteurl</strong>'
 						);
 						?>:
 						<code>
-							<?php echo esc_html( $prefix ) . '://'; ?><span id='npsdds--subdomain-preview'></span>.<?php echo esc_html( $new_domain . $add_path ); ?>
+							<?php echo esc_html( $prefix ) . '://'; ?><span id='psdn--subdomain-preview'></span>.<?php echo esc_html( $new_domain . $add_path ); ?>
 						</code>
 					</p>
 				</td>
@@ -98,7 +98,7 @@ class Network_Pseduo_Sub_Domains {
 	 */
 	public function enqueue_script() {
 		wp_enqueue_script(
-			'network-pseduo-sub-domains-js',
+			'pseudo-subdomain-network-js',
 			plugins_url( 'js/index.js', __FILE__ ),
 			[ 'jquery' ],
 			// expensive parsing, but this is only run on this form, so it's acceptable.
@@ -116,10 +116,10 @@ class Network_Pseduo_Sub_Domains {
 	 */
 	public function map_to_subdomain( $blog_id ) {
 		if ( false === check_admin_referer( 'add-blog', '_wpnonce_add-blog' ) ) {
-			wp_die( esc_html__( 'Nice try.', 'npsdds' ) );
+			wp_die( esc_html__( 'Nice try.', 'psdn' ) );
 		}
 		if ( ! current_user_can( 'manage_sites' ) ) {
-			wp_die( esc_html__( 'You do not have sufficient permissions to add sites to this network.', 'npsdds' ) );
+			wp_die( esc_html__( 'You do not have sufficient permissions to add sites to this network.', 'psdn' ) );
 		}
 		// Check that this subdomain is actually wanted.
 		if ( ! isset( $_POST['blog']['domain_map'] ) || '1' !== ( $_POST['blog']['domain_map'] ) ) { //phpcs:ignore
@@ -159,4 +159,4 @@ class Network_Pseduo_Sub_Domains {
 
 }
 
-new Network_Pseduo_Sub_Domains();
+new Network_pseudo_Sub_Domains();
