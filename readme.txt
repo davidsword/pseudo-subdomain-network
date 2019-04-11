@@ -4,7 +4,7 @@ Donate link:       https://wordpressfoundation.org/donate/
 Tags:              network, multisite, subdomain, domain map, mapping
 Requires at least: 5.0
 Tested up to:      5.1.1
-Stable tag:        1.0.0
+Stable tag:        1.1.0
 Requires PHP:      7.1
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,7 +13,7 @@ On a WordPress Network site, using a Subdirectories (path-based) install for sub
 
 == Description ==
 
-On a [WordPress Network](https://codex.wordpress.org/Create_A_Network) site, using a Subdirectories (path-based) install for sub sites, this plugin adds an option in **Network » Sites » Add New Site** to quickly [Domain Map](https://wordpress.org/support/article/wordpress-multisite-map-subdomainping/) the Subdirectory site as a subdomain of the network.
+On a [WordPress Network](https://codex.wordpress.org/Create_A_Network) site, using a Subdirectories (path-based) install for sub sites, this plugin adds an option in **Network » Sites » Add New Site** to quickly [Domain Map](https://wordpress.org/support/article/wordpress-multisite-domain-mapping/) the Subdirectory site as a subdomain of the network.
 
 ![](screenshot-1.png)
 
@@ -46,7 +46,7 @@ The plugin should either be installed as a mu-plugin or network activated. It's 
 
 ### Is a multisite setup the same as a network? ###
 
-Yes. The verbiage is interchangable.
+Yes. The verbiage is interchangeable.
 
 ### Does this plugin work when `SUBDOMAIN_INSTALL` is true? ###
 
@@ -58,13 +58,18 @@ No. This plugin only works when the network is a Subdirectories install.
 
 == Changelog ==
 
+= 1.1.0 =
+* April 11, 2019
+* Fixed - site needs to edit `wp_blogs` domain and path columns for domain mapping
+* Improved - documentation
+
 = 1.0.0 =
-* April 12, 2019
+* April 11, 2019
 * Stable init release
 
 == Contributors ==
 
-The following grunt tasks are avaliable during development:
+The following grunt tasks are available during development:
 
 * `grunt i18n` containing `addtextdomain` and `makepot`
 * `grunt readme` containing `wp_readme_to_markdown`

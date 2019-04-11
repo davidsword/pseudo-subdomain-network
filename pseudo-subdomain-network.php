@@ -7,7 +7,7 @@
  * Author URI:      https://davidsword.ca/
  * Text Domain:     psdn
  * Domain Path:     /languages
- * Version:         1.0.0
+ * Version:         1.1.0
  * Network:         true
  *
  * @package         pseudo-subdomain-network
@@ -19,8 +19,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Don't waste resources loading if not admin or not proper Network setup.
  *
- * @TODO check for www ? `strstr( get_network()->domain, 'www.' )`
- * @TODO add an admin_notice here.
+ * @TODO add an `admin_notice` to let admin know why the plugin might not be working.
  */
 if ( ! is_admin() || ! is_multisite() || is_subdomain_install() ) {
 	return;
@@ -43,7 +42,7 @@ class Network_pseudo_Sub_Domains {
 	 */
 	public function hook_into_wp() {
 
-		// The follow hooks are very specific, so we don't need to do any page_hook condtionals.
+		// The follow hooks are very specific, so we don't need to do any page_hook conditionals.
 		add_action( 'admin_print_footer_scripts-site-new.php', [ $this, 'enqueue_script' ] );
 		add_action( 'network_site_new_form', [ $this, 'add_network_form_row' ], 99 );
 
@@ -52,16 +51,13 @@ class Network_pseudo_Sub_Domains {
 	}
 
 	/**
-	 * Add a feild to Network » Sites » Create New.
+	 * Add a field to Network » Sites » Create New.
 	 *
 	 * Will add a checkbox to "Map this site as a subdomain"
 	 * The JS populates a preview of what the subdomain will look like, based on the slug entered.
 	 */
 	public function add_network_form_row() {
-		$new_domain = preg_replace( '|^www\.|', '', get_network()->domain );
-		$path       = get_network()->path;
-		$add_path   = ( '/' === $path ) ? '' : $path;
-		$prefix     = is_ssl() ? 'https' : 'http';
+		$network_url = $this->get_network_url_parts();
 		?>
 		<table id='psdn--holder'>
 			<tr class="form-field" id="psdn--tr-row">
@@ -79,13 +75,14 @@ class Network_pseudo_Sub_Domains {
 					<p class='description' id='psdn--descirption-enabled'>
 						<?php
 						echo sprintf(
-							esc_html__( 'Set the new sites %s and %s option values to', 'psdn' ),
+							// translators: database options names.
+							esc_html__( 'This will set the domain, %1$s and %2$s option values to', 'psdn' ),
 							'<strong>home</strong>',
 							'<strong>siteurl</strong>'
 						);
-						?>:
+						?>
 						<code>
-							<?php echo esc_html( $prefix ) . '://'; ?><span id='psdn--subdomain-preview'></span>.<?php echo esc_html( $new_domain . $add_path ); ?>
+							<?php echo esc_html( $network_url['scheme'] ); ?><span id='psdn--subdomain-preview'></span>.<?php echo esc_html( $network_url['domain'] . $network_url['path'] ); ?>
 						</code>
 					</p>
 				</td>
@@ -127,21 +124,20 @@ class Network_pseudo_Sub_Domains {
 			return;
 		}
 
-		// Retrieve the just-created sanitized path from the database.
-		$path = get_blog_details( $blog_id, false )->path;
-		$slug = trim( $path, '/' );
+		// Retrieve the just-created blog path from the database.
+		$slug = trim( get_blog_details( $blog_id )->path, '/' );
 
-		// Don't make things complicated.
+		// Don't make things complicated, if www just ignore, edge case.
 		if ( 'www' === $slug ) {
 			return;
 		}
 
 		// Get the network domain and path.
-		$network_domain = preg_replace( '|^www\.|', '', get_network()->domain );
-		$network_path   = get_network()->path;
-		$prefix         = is_ssl() ? 'https' : 'http';
+		$network_url = $this->get_network_url_parts();
 
-		$new_domain = esc_url( $prefix . '://' . $slug . '.' . $network_domain . $network_path );
+		// Build the new URL.
+		$new_domain = $slug . '.' . $network_url['domain'];
+		$new_url    = esc_url( $network_url['scheme'] . $new_domain . $network_url['path'] );
 
 		// The ol' switcher'oo.
 		switch_to_blog( $blog_id );
@@ -149,13 +145,36 @@ class Network_pseudo_Sub_Domains {
 		/**
 		 * Domain map the subdomain!
 		 *
-		 * @see https://wordpress.org/support/article/wordpress-multisite-map-subdomainping/
+		 * @see https://wordpress.org/support/article/wordpress-multisite-domain-mapping/
 		 */
-		update_option( 'home', $new_domain );
-		update_option( 'siteurl', $new_domain );
+		$new_blog_details = [
+			'domain' => $new_domain,
+			'path'   => $network_url['path'],
+		];
+		update_blog_details( $blog_id, $new_blog_details );
+		update_option( 'home', $new_url );
+		update_option( 'siteurl', $new_url );
 
 		// The ol' switcher'oo, back to the network admin.
 		restore_current_blog();
+	}
+
+	/**
+	 * Get network URL details.
+	 *
+	 * Note that the domain strips the "www." out.
+	 *
+	 * @return array URL parts of network URL.
+	 */
+	public function get_network_url_parts() {
+		$scheme = is_ssl() ? 'https' : 'http';
+		$domain = preg_replace( '|^www\.|', '', get_network()->domain );
+		$path   = get_network()->path;
+		return [
+			'scheme' => $scheme . '://',
+			'domain' => $domain,
+			'path'   => $path,
+		];
 	}
 
 }
