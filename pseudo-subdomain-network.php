@@ -79,11 +79,12 @@ class Network_pseudo_Sub_Domains {
 					<p class='description' id='psdn--descirption-enabled'>
 						<?php
 						echo sprintf(
-							esc_html__( 'Set the new sites %s and %s option values to', 'psdn' ),
+							// translators: database options names.
+							esc_html__( 'Set the new sites %1$s and %2$s option values to', 'psdn' ),
 							'<strong>home</strong>',
 							'<strong>siteurl</strong>'
 						);
-						?>:
+						?>
 						<code>
 							<?php echo esc_html( $prefix ) . '://'; ?><span id='psdn--subdomain-preview'></span>.<?php echo esc_html( $new_domain . $add_path ); ?>
 						</code>
