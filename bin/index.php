@@ -1,0 +1,2 @@
+<?php
+// Quiet is silver.

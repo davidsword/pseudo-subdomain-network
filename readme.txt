@@ -1,17 +1,17 @@
-# Pseudo Subdomain Network #
-**Contributors:**      davidsword  
-**Donate link:**       https://wordpressfoundation.org/donate/  
-**Tags:**              network, multisite, subdomain, domain map, mapping  
-**Requires at least:** 5.0  
-**Tested up to:**      5.1.1  
-**Stable tag:**        1.0.0  
-**Requires PHP:**      7.1  
-**License:**           GPLv2 or later  
-**License URI:**       https://www.gnu.org/licenses/gpl-2.0.html  
+=== Pseudo Subdomain Network ===
+Contributors:      davidsword
+Donate link:       https://wordpressfoundation.org/donate/
+Tags:              network, multisite, subdomain, domain map, mapping
+Requires at least: 5.0
+Tested up to:      5.1.1
+Stable tag:        1.0.0
+Requires PHP:      7.1
+License:           GPLv2 or later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
 On a WordPress Network site, using a Subdirectories (path-based) install for sub sites, this plugin adds an option in to quickly Domain Map the Subdirectory site as a subdomain of the network.
 
-## Description ##
+== Description ==
 
 On a [WordPress Network](https://codex.wordpress.org/Create_A_Network) site, using a Subdirectories (path-based) install for sub sites, this plugin adds an option in **Network » Sites » Add New Site** to quickly [Domain Map](https://wordpress.org/support/article/wordpress-multisite-map-subdomainping/) the Subdirectory site as a subdomain of the network.
 
@@ -32,7 +32,7 @@ _Why_? Because some hosts do not allow WordPress networks as Subdomain installs,
 
 These domains will only work out-of-the box if you've set wild card sub domains, or set the subdomains A records before hand. For more information please [see this page](https://codex.wordpress.org/Create_A_Network) or contact your hosting provider.
 
-## Installation ##
+== Installation ==
 
 The plugin should either be installed as a mu-plugin or network activated. It's a network plugin and therefore cannot be activated on individual sites on the network.
 
@@ -42,7 +42,7 @@ The plugin should either be installed as a mu-plugin or network activated. It's 
 1. Upload `/pseudo-subdomain-network/` to `/wp-content/mu-plugins/` or `/wp-content/plugins/` directory
 1. If uploaded to the latter, activate the plugin through the 'Network » Plugins' menu in WordPress
 
-## Frequently Asked Questions ##
+== Frequently Asked Questions ==
 
 ### Is a multisite setup the same as a network? ###
 
@@ -52,19 +52,17 @@ Yes. The verbiage is interchangable.
 
 No. This plugin only works when the network is a Subdirectories install.
 
-## Screenshots ##
+== Screenshots ==
 
-### 1. The field added to the `Network » Sites » Add New Site` form. ###
-![The field added to the `Network » Sites » Add New Site` form.](http://ps.w.org/pseudo-subdomain-network/assets/screenshot-1.png)
+1. The field added to the `Network » Sites » Add New Site` form.
 
+== Changelog ==
 
-## Changelog ##
-
-### 1.0.0 ###
+= 1.0.0 =
 * April 12, 2019
 * Stable init release
 
-## Contributors ##
+== Contributors ==
 
 The following grunt tasks are avaliable during development:
 
