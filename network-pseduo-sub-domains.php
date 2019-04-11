@@ -62,26 +62,29 @@ class Network_Pseduo_Sub_Domains {
 		$add_path   = ( '/' === $path ) ? '' : $path;
 		$prefix     = is_ssl() ? 'https' : 'http';
 		?>
-		<table id='domain-mapping-options-holder'>
-			<tr class="form-field" id="domain-mapping-options">
+		<table id='npsdds--holder'>
+			<tr class="form-field" id="npsdds--tr-row">
 				<th scope="row">
-					<?php esc_html_e( 'Sub Domain Map', 'npsdds' ); ?>
+					<?php esc_html_e( 'Domain Map Subdomain', 'npsdds' ); ?>
 				</th>
 				<td>
-					<input name="blog[domain_map]" type="checkbox" id="domain-map" required="" value="1">
-					<label for="domain-map">
-						<?php esc_html_e( 'Domain Map this new site as a subdomain', 'npsdds' ); ?>
+					<input name="blog[domain_map]" type="checkbox" id="map-subdomain" required="" value="1">
+					<label for="map-subdomain">
+						<?php esc_html_e( 'Map this new site slug as a subdomain', 'npsdds' ); ?>
 					</label><br />
-					<p class='description' id='domain-map--description'>
+					<p class='description' id='npsdds--descirption-disabled'>
+						<?php esc_html_e( 'Enter a Site Address above to enable this option.', 'npsdds' ); ?>
+					</p>
+					<p class='description' id='npsdds--descirption-enabled'>
 						<?php
 						echo sprintf(
-							esc_html__( 'Set sites %s and %s option values to', 'npsdds' ),
+							esc_html__( 'Set the new sites %s and %s option values to', 'npsdds' ),
 							'<strong>home</strong>',
 							'<strong>siteurl</strong>'
 						);
 						?>:
 						<code>
-							<?php echo esc_html( $prefix ) . '://'; ?><span id='sub-domain-mapping'></span>.<?php echo esc_html( $new_domain . $add_path ); ?>
+							<?php echo esc_html( $prefix ) . '://'; ?><span id='npsdds--subdomain-preview'></span>.<?php echo esc_html( $new_domain . $add_path ); ?>
 						</code>
 					</p>
 				</td>
@@ -145,7 +148,7 @@ class Network_Pseduo_Sub_Domains {
 		/**
 		 * Domain map the subdomain!
 		 *
-		 * @see https://wordpress.org/support/article/wordpress-multisite-domain-mapping/
+		 * @see https://wordpress.org/support/article/wordpress-multisite-map-subdomainping/
 		 */
 		update_option( 'home', $new_domain );
 		update_option( 'siteurl', $new_domain );

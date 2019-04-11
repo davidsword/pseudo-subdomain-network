@@ -6,14 +6,14 @@
 jQuery(document).ready( function($) {
 
 	// Unforunently, there's no hooks or filters so we need to "hack" this `tr` row into the table.
-	$('#domain-mapping-options').insertAfter('table.form-table tr:nth-child(1)');
+	$('#npsdds--tr-row').insertAfter('table.form-table tr:nth-child(1)');
 
 	// Wrapping the to-be-moved `tr` in a table keeps the browsers DOM happy, lets remove it now.
-	$('#domain-mapping-options-holder').remove();
+	$('#npsdds--holder').remove();
 
 	// Take the slug entered and preview what a subdomain URL will look like.
 	const siteaddress = $('#site-address');
-	const subdomainmapping = $('#sub-domain-mapping');
+	const subdomainmapping = $('#npsdds--subdomain-preview');
 
 	siteaddress
 		.keyup( domainpreview )
@@ -26,16 +26,18 @@ jQuery(document).ready( function($) {
 		// This setting is a little confusing when there's no slug. Toggle some things for +UX.
 		if ( 0 === slug.length ) {
 			console.dir( 'disabled' );
-			$('#domain-map').removeAttr( 'checked' );
-			$('#domain-map').attr( 'disabled', true );
-			$('label[for=domain-map]').css( 'opacity', '0.5' );
-			$('#domain-map--description').hide();
+			$('#map-subdomain').removeAttr( 'checked' );
+			$('#map-subdomain').attr( 'disabled', true );
+			$('label[for=map-subdomain]').css( 'opacity', '0.75' );
+			$('#npsdds--descirption-enabled').hide();
+			$('#npsdds--descirption-disabled').show().css( 'opacity', '0.75' );
 		} else {
 			console.dir( 'not disabled' );
-			$('#domain-map').attr( 'checked', true );
-			$('#domain-map').removeAttr( 'disabled' );
-			$('label[for=domain-map]').css( 'opacity', '1' );
-			$('#domain-map--description').show();
+			$('#map-subdomain').attr( 'checked', true );
+			$('#map-subdomain').removeAttr( 'disabled' );
+			$('label[for=map-subdomain]').css( 'opacity', '1' );
+			$('#npsdds--descirption-enabled').show();
+			$('#npsdds--descirption-disabled').hide();
 		}
 	}
 
