@@ -13,7 +13,24 @@ Plugin - For subfolder networks, have the Create New Site form site the home and
 
 == Description ==
 
-...
+On a [WordPress Network](https://codex.wordpress.org/Create_A_Network) site, using a Subdirectories (path-based) install for sub sites, this plugin adds an option in **Network » Sites » Add New Site** to quickly [Domain Map](https://wordpress.org/support/article/wordpress-multisite-map-subdomainping/) the Subdirectory site as a subdomain of the network.
+
+![](screenshot-1.png)
+
+For example, if you create the site `example.com/siteone/`, this plugin add an option to set the new websites `home` and `siteurl` values to `siteone.example.com/`. Once the form is submitted and the site create, the site will be mapped to the subdomain.
+
+```sql
++-----------+-------------+-----------------------------+----------+
+| option_id | option_name | option_value                | autoload |
++-----------+-------------+-----------------------------+----------+
+|         2 | home        | http://siteone.example.com/ | yes      |
+|         1 | siteurl     | http://siteone.example.com/ | yes      |
++-----------+-------------+-----------------------------+----------+
+```
+
+_Why_? Because some hosts do not allow WordPress networks as Subdomain installs, only Subdirectories. This plugin helps create a sort of Pseduo Subdomain Network, quickly mapping the new site.
+
+These domains will only work out-of-the box if you've set wild card sub domains, or set the subdomains A records before hand. For more information please [see this page](https://codex.wordpress.org/Create_A_Network) or contact your hosting provider.
 
 == Installation ==
 
@@ -27,23 +44,17 @@ The plugin should either be installed as a mu-plugin or network activated. It's 
 
 == Frequently Asked Questions ==
 
-= Is a multisite setup the same as a network? =
+### Is a multisite setup the same as a network? ###
 
 Yes. The verbiage is interchangable.
 
-= What if my site is not a network setup? =
+### Does this plugin work when `SUBDOMAIN_INSTALL` is true? ###
 
-Then this is not the plugin you're looking for.
-
-= Why does this plugin require such a high version of PHP? =
-
-It doesn't, this plugin will run stable on >= 5.6. Flagging this requirment higher than needed
-helps push WordPress users and hosts to upgrading to the safer and faster versions of PHP.
+No. This plugin only works when the network is a Subdirectories install.
 
 == Screenshots ==
 
-1. @TODO
-2. @TODO
+1. The field added to the `Network » Sites » Add New Site` form.
 
 == Changelog ==
 
@@ -59,6 +70,6 @@ helps push WordPress users and hosts to upgrading to the safer and faster versio
 
 The following grunt tasks are avaliable during development:
 
-* `i18n` containing `addtextdomain` and `makepot`
-* `readme` containing `wp_readme_to_markdown`
-* `build` run the two commands above
+* `grunt i18n` containing `addtextdomain` and `makepot`
+* `grunt readme` containing `wp_readme_to_markdown`
+* `grunt` run the two commands above
