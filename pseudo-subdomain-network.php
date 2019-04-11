@@ -128,9 +128,8 @@ class Network_pseudo_Sub_Domains {
 			return;
 		}
 
-		// Retrieve the just-created sanitized path from the database.
-		$path = get_blog_details( $blog_id, false )->path;
-		$slug = trim( $path, '/' );
+		// Retrieve the just-created blog.
+		$slug = trim( get_blog_details( $blog_id )->path, '/' );
 
 		// Don't make things complicated.
 		if ( 'www' === $slug ) {
@@ -140,9 +139,11 @@ class Network_pseudo_Sub_Domains {
 		// Get the network domain and path.
 		$network_domain = preg_replace( '|^www\.|', '', get_network()->domain );
 		$network_path   = get_network()->path;
-		$prefix         = is_ssl() ? 'https' : 'http';
+		$scheme         = is_ssl() ? 'https' : 'http';
 
-		$new_domain = esc_url( $prefix . '://' . $slug . '.' . $network_domain . $network_path );
+		// Build and deconstruct the new URL.
+		$domain  = $slug . '.' . $network_domain;
+		$new_url = esc_url( $scheme . '://' . $domain . $network_path );
 
 		// The ol' switcher'oo.
 		switch_to_blog( $blog_id );
@@ -152,8 +153,13 @@ class Network_pseudo_Sub_Domains {
 		 *
 		 * @see https://wordpress.org/support/article/wordpress-multisite-map-subdomainping/
 		 */
-		update_option( 'home', $new_domain );
-		update_option( 'siteurl', $new_domain );
+		$new_blog_details = [
+			'domain' => $domain,
+			'path'   => $network_path
+		];
+		update_blog_details( $blog_id, $new_blog_details );
+		update_option( 'home', $new_url );
+		update_option( 'siteurl', $new_url );
 
 		// The ol' switcher'oo, back to the network admin.
 		restore_current_blog();
