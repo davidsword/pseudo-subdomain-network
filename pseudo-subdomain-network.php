@@ -137,7 +137,7 @@ class Network_pseudo_Sub_Domains {
 
 		// Build the new URL.
 		$new_domain = $slug . '.' . $network_url['domain'];
-		$new_url    = esc_url( $network_url['scheme'] . $new_domain . $network_url['path'] );
+		$new_url    = esc_url( untrailingslashit( $network_url['scheme'] . $new_domain . $network_url['path'] ) );
 
 		// The ol' switcher'oo.
 		switch_to_blog( $blog_id );
