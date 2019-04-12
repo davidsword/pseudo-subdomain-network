@@ -7,7 +7,7 @@
  * Author URI:      https://davidsword.ca/
  * Text Domain:     psdn
  * Domain Path:     /languages
- * Version:         1.1.1
+ * Version:         1.1.2
  * Network:         true
  *
  * @package         pseudo-subdomain-network

@@ -4,7 +4,7 @@ Donate link:       https://wordpressfoundation.org/donate/
 Tags:              network, multisite, subdomain, domain map, mapping
 Requires at least: 5.0
 Tested up to:      5.1.1
-Stable tag:        1.1.1
+Stable tag:        1.1.2
 Requires PHP:      7.1
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -57,6 +57,10 @@ No. This plugin only works when the network is a Subdirectories install.
 1. The field added to the `Network » Sites » Add New Site` form.
 
 == Changelog ==
+
+= 1.1.2 =
+* April 12, 2019
+* Fix - remove trailing slash from new site url to reflect core better
 
 = 1.1.1 =
 * April 12, 2019
