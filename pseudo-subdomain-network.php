@@ -26,9 +26,9 @@ if ( ! is_admin() || ! is_multisite() || is_subdomain_install() ) {
 }
 
 /**
- * Network_pseudo_Sub_Domains
+ * Pseudo_Subdomain_Network
  */
-class Network_pseudo_Sub_Domains {
+class Pseudo_Subdomain_Network {
 
 	/**
 	 * Build'r up!
@@ -179,4 +179,4 @@ class Network_pseudo_Sub_Domains {
 
 }
 
-new Network_pseudo_Sub_Domains();
+new Pseudo_Subdomain_Network();

@@ -70,24 +70,29 @@ No. This plugin only works when the network is a Subdirectories install.
 
 == Changelog ==
 
+= 1.1.3 =
+* ** ?? **
+* Add tests instructions
+* Improve changlog
+
 = 1.1.2 =
-* April 12, 2019
-* Fix - remove trailing slash from new site url to reflect core better
-* Improve - readme
+* **April 12, 2019**
+* Fix remove trailing slash from new site url to reflect core better
+* Improve readme
 
 = 1.1.1 =
-* April 12, 2019
+* **April 12, 2019**
 * Added tests
-* Improved - documentation
+* Improve documentation
 
 = 1.1.0 =
-* April 11, 2019
-* Fixed - site needs to edit `wp_blogs` domain and path columns for domain mapping
-* Improved - documentation
+* **April 11, 2019**
+* Fix site needs to edit `wp_blogs` domain and path columns for domain mapping
+* Improve documentation
 
 = 1.0.0 =
-* April 11, 2019
-* Stable init release
+* **April 11, 2019**
+* Add init release
 
 == Contributors ==
 
@@ -96,3 +101,9 @@ The following grunt tasks are available during development:
 * `grunt i18n` containing `addtextdomain` and `makepot`
 * `grunt readme` containing `wp_readme_to_markdown`
 * `grunt` run the two commands above
+
+For tests (on a VVV setup):
+
+* `$ cd /path/to/pseudo-subdomain-network/`
+* `$ ./bin/install-wp-tests.sh phpunit root root`
+* `$ phpunit`
