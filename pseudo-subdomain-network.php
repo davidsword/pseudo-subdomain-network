@@ -7,7 +7,7 @@
  * Author URI:      https://davidsword.ca/
  * Text Domain:     psdn
  * Domain Path:     /languages
- * Version:         1.1.0
+ * Version:         1.1.1
  * Network:         true
  *
  * @package         pseudo-subdomain-network
@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Don't waste resources loading if not admin or not proper Network setup.
  *
- * @TODO add an `admin_notice` to let admin know why the plugin might not be working.
+ * @TODO add an `admin_notice` detailing issue instead of being silent.
  */
 if ( ! is_admin() || ! is_multisite() || is_subdomain_install() ) {
 	return;
@@ -42,16 +42,16 @@ class Network_pseudo_Sub_Domains {
 	 */
 	public function hook_into_wp() {
 
-		// The follow hooks are very specific, so we don't need to do any page_hook conditionals.
+		// Add custom field to Network » Sites » 'Add New Site' form.
 		add_action( 'admin_print_footer_scripts-site-new.php', [ $this, 'enqueue_script' ] );
 		add_action( 'network_site_new_form', [ $this, 'add_network_form_row' ], 99 );
 
-		// On Network » Sites » Add New Site form submission, process the added field.
+		// On 'Add New Site' form submission, process the added field.
 		add_action( 'wpmu_new_blog', [ $this, 'map_to_subdomain' ] );
 	}
 
 	/**
-	 * Add a field to Network » Sites » Create New.
+	 * Add a field to Network » Sites » Add New Site.
 	 *
 	 * Will add a checkbox to "Map this site as a subdomain"
 	 * The JS populates a preview of what the subdomain will look like, based on the slug entered.
@@ -65,8 +65,8 @@ class Network_pseudo_Sub_Domains {
 					<?php esc_html_e( 'Domain Map Subdomain', 'psdn' ); ?>
 				</th>
 				<td>
-					<input name="blog[domain_map]" type="checkbox" id="map-subdomain" required="" value="1">
-					<label for="map-subdomain">
+					<input name="blog[domain_map]" type="checkbox" id="domain-map" required="" value="1">
+					<label for="domain-map">
 						<?php esc_html_e( 'Map this new site slug as a subdomain', 'psdn' ); ?>
 					</label><br />
 					<p class='description' id='psdn--descirption-disabled'>
