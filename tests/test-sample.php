@@ -29,7 +29,7 @@ class SampleTest extends WP_UnitTestCase {
 
 		// fake the requirments, as if checkbox was selected and form submitted.
 		$_POST['blog']['domain_map'] = '1';
-		$_REQUEST['add-blog'] = wp_create_nonce('_wpnonce_add-blog');
+		$_REQUEST['_wpnonce_add-blog'] = wp_create_nonce('add-blog');
 
 		$network = new Network_pseudo_Sub_Domains();
 		$network->map_to_subdomain( $blog_id );

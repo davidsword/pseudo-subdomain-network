@@ -113,9 +113,9 @@ class Network_pseudo_Sub_Domains {
 	 * @param int $blog_id the ID of the blog that was just created.
 	 */
 	public function map_to_subdomain( $blog_id ) {
-		// if ( false === check_admin_referer( 'add-blog', '_wpnonce_add-blog' ) ) {
-			// wp_die( esc_html__( 'Nice try.', 'psdn' ) );
-		// }
+		if ( false === check_admin_referer( 'add-blog', '_wpnonce_add-blog' ) ) {
+			wp_die( esc_html__( 'Nice try.', 'psdn' ) );
+		}
 		if ( ! current_user_can( 'manage_sites' ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions to add sites to this network.', 'psdn' ) );
 		}
