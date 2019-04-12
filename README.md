@@ -17,15 +17,27 @@ On a [WordPress Network](https://codex.wordpress.org/Create_A_Network) site, usi
 
 ![](screenshot-1.png)
 
-For example, if you create the site `example.com/siteone/`, this plugin add an option to set the new websites `home` and `siteurl` values to `siteone.example.com/`. Once the form is submitted and the site create, the site will be mapped to the subdomain.
+For example, if you create the subdirectory site `example.com/siteone/`, when the new option selected, after the form is submitted and the site created, the site will be mapped to the subdomain by:
+
+Setting the `home` and `siteurl` values to `http://siteone.example.com`:
 
 ```
-+-----------+-------------+-----------------------------+----------+
-| option_id | option_name | option_value                | autoload |
-+-----------+-------------+-----------------------------+----------+
-|         2 | home        | http://siteone.example.com/ | yes      |
-|         1 | siteurl     | http://siteone.example.com/ | yes      |
-+-----------+-------------+-----------------------------+----------+
++-----------+-------------+----------------------------+----------+
+| option_id | option_name | option_value               | autoload |
++-----------+-------------+----------------------------+----------+
+|         2 | home        | http://siteone.example.com | yes      |
+|         1 | siteurl     | http://siteone.example.com | yes      |
++-----------+-------------+----------------------------+----------+
+```
+
+And setting the `domain` column of `wp_blogs` to `siteone.example.com` and adjusting the `path` as needed:
+
+```
++---------+---------------------+------+
+| blog_id | domain              | path |
++---------+---------------------+------+
+|       2 | siteone.example.com | /    |
++---------+---------------------+------+
 ```
 
 _Why_? Because some hosts do not allow WordPress networks as Subdomain installs, only Subdirectories. This plugin helps create a sort of pseudo Subdomain Network, quickly mapping the new site.
@@ -63,6 +75,7 @@ No. This plugin only works when the network is a Subdirectories install.
 ### 1.1.2 ###
 * April 12, 2019
 * Fix - remove trailing slash from new site url to reflect core better
+* Improve - readme
 
 ### 1.1.1 ###
 * April 12, 2019
