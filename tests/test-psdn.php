@@ -1,6 +1,6 @@
 <?php
 /**
- * Class SampleTest
+ * Tests for plugin.
  *
  * @package pseudo-subdomain-network
  */
