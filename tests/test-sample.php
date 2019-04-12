@@ -16,20 +16,22 @@ class SampleTest extends WP_UnitTestCase {
 	public function test__Network_pseudo_Sub_Domains__map_to_subdomain() {
 
 		// Create user and blog.
-		$author1 = $this->factory->user->create_and_get( [
+		$new_user = [
 			'user_login' => 'jdoe',
-			'user_pass' => NULL,
-			'role' => 'administrator'
-		]);
-		grant_super_admin( $author1->ID );
-		wp_set_current_user( $author1->ID );
-		$blog_id = $this->factory()->blog->create( [
-			'path' => '/foo'
-		] );
+			'user_pass'  => null,
+			'role'       => 'administrator',
+		];
+		$user = $this->factory->user->create_and_get( $new_user );
+		grant_super_admin( $user->ID );
+		wp_set_current_user( $user->ID );
+		$new_site = [
+			'path' => '/foo',
+		];
+		$blog_id  = $this->factory()->blog->create( $new_site );
 
 		// fake the requirments, as if checkbox was selected and form submitted.
-		$_POST['blog']['domain_map'] = '1';
-		$_REQUEST['_wpnonce_add-blog'] = wp_create_nonce('add-blog');
+		$_POST['blog']['domain_map']   = '1';
+		$_REQUEST['_wpnonce_add-blog'] = wp_create_nonce( 'add-blog' );
 
 		$network = new Network_pseudo_Sub_Domains();
 		$network->map_to_subdomain( $blog_id );
@@ -37,11 +39,11 @@ class SampleTest extends WP_UnitTestCase {
 		switch_to_blog( $blog_id );
 
 		$domain  = get_blog_details( $blog_id )->domain;
-		$home    = get_option('home');
-		$siteurl = get_option('siteurl');
+		$home    = get_option( 'home' );
+		$siteurl = get_option( 'siteurl' );
 
-		$this->assertEquals( $domain,  'foo.example.org', "wp_blog's `domain` column is incorrect" );
-		$this->assertEquals( $home,    'http://foo.example.org', 'option `home` is incorrect' );
+		$this->assertEquals( $domain, 'foo.example.org', "wp_blog's `domain` column is incorrect" );
+		$this->assertEquals( $home, 'http://foo.example.org', 'option `home` is incorrect' );
 		$this->assertEquals( $siteurl, 'http://foo.example.org', 'option `siteurl` is incorrect' );
 
 	}
@@ -51,9 +53,9 @@ class SampleTest extends WP_UnitTestCase {
 	 */
 	public function test__Network_pseudo_Sub_Domains__get_network_url_parts() {
 		$network = new Network_pseudo_Sub_Domains();
-		$url = $network->get_network_url_parts();
+		$url     = $network->get_network_url_parts();
 		$this->assertEquals( $url['scheme'], 'http://', 'scheme is incorrect' );
 		$this->assertEquals( $url['domain'], 'example.org', 'domain is incorrect' );
-		$this->assertEquals( $url['path'],   '/', 'path is incorrect' );
+		$this->assertEquals( $url['path'], '/', 'path is incorrect' );
 	}
 }
