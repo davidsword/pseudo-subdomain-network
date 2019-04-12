@@ -26,16 +26,16 @@ jQuery(document).ready( function($) {
 		// This setting is a little confusing when there's no slug. Toggle some things for +UX.
 		if ( 0 === slug.length ) {
 			console.dir( 'disabled' );
-			$('#map-subdomain').removeAttr( 'checked' );
-			$('#map-subdomain').attr( 'disabled', true );
-			$('label[for=map-subdomain]').css( 'opacity', '0.75' );
+			$('#domain-map').removeAttr( 'checked' );
+			$('#domain-map').attr( 'disabled', true );
+			$('label[for=domain-map]').css( 'opacity', '0.75' );
 			$('#psdn--descirption-enabled').hide();
 			$('#psdn--descirption-disabled').show().css( 'opacity', '0.75' );
 		} else {
 			console.dir( 'not disabled' );
-			$('#map-subdomain').attr( 'checked', true );
-			$('#map-subdomain').removeAttr( 'disabled' );
-			$('label[for=map-subdomain]').css( 'opacity', '1' );
+			$('#domain-map').attr( 'checked', true );
+			$('#domain-map').removeAttr( 'disabled' );
+			$('label[for=domain-map]').css( 'opacity', '1' );
 			$('#psdn--descirption-enabled').show();
 			$('#psdn--descirption-disabled').hide();
 		}

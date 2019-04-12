@@ -65,8 +65,8 @@ class Network_pseudo_Sub_Domains {
 					<?php esc_html_e( 'Domain Map Subdomain', 'psdn' ); ?>
 				</th>
 				<td>
-					<input name="blog[domain_map]" type="checkbox" id="map-subdomain" required="" value="1">
-					<label for="map-subdomain">
+					<input name="blog[domain_map]" type="checkbox" id="domain-map" required="" value="1">
+					<label for="domain-map">
 						<?php esc_html_e( 'Map this new site slug as a subdomain', 'psdn' ); ?>
 					</label><br />
 					<p class='description' id='psdn--descirption-disabled'>
