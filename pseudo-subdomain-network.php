@@ -126,7 +126,7 @@ class Pseudo_Subdomain_Network {
 		// Retrieve the just-created blog path from the database.
 		$slug = trim( get_blog_details( $blog_id )->path, '/' );
 
-		// Don't make things complicated, if www just ignore. Edge case.
+		// Don't make things complicated, if site is www just ignore. Super edge case.
 		if ( 'www' === $slug ) {
 			return;
 		}
@@ -156,7 +156,8 @@ class Pseudo_Subdomain_Network {
 	/**
 	 * Get network URL details.
 	 *
-	 * Note that the domain strips the "www." out.
+	 * Note that the domain strips the "www." out because the domain is needed
+	 * without the triple-w subdomain.
 	 *
 	 * @return array URL parts of network URL.
 	 */
