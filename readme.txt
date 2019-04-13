@@ -49,8 +49,7 @@ These domains will only work out-of-the box if you've set wild card sub domains,
 The plugin should either be installed as a mu-plugin or network activated. It's a network plugin and therefore cannot be activated on individual sites on the network.
 
 1. Ensure your site is a [WordPress Network setup](https://codex.wordpress.org/Create_A_Network)
-	1. Using folders, not subdomain sub sites
-	1. & The primary domain must not include "www."
+1. The network must be a subdirectories insteall, not a subdomain install
 1. Upload `/pseudo-subdomain-network/` to `/wp-content/mu-plugins/` or `/wp-content/plugins/` directory
 1. If uploaded to the latter, activate the plugin through the 'Network » Plugins' menu in WordPress
 
