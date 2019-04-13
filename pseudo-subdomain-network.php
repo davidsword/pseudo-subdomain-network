@@ -99,7 +99,6 @@ class Pseudo_Subdomain_Network {
 			'pseudo-subdomain-network-js',
 			plugins_url( 'js/index.js', __FILE__ ),
 			[ 'jquery' ],
-			// expensive parsing, but this is only run on this form, so it's acceptable.
 			SCRIPT_DEBUG ? time() : get_plugin_data( __FILE__ )->Version,
 			true
 		);
@@ -119,7 +118,7 @@ class Pseudo_Subdomain_Network {
 		if ( ! current_user_can( 'manage_sites' ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions to add sites to this network.', 'psdn' ) );
 		}
-		// Check that this subdomain is actually wanted.
+		// Check that this subdomain is actually wanted for the site.
 		if ( ! isset( $_POST['blog']['domain_map'] ) || '1' !== ( $_POST['blog']['domain_map'] ) ) { //phpcs:ignore
 			return;
 		}
@@ -127,19 +126,15 @@ class Pseudo_Subdomain_Network {
 		// Retrieve the just-created blog path from the database.
 		$slug = trim( get_blog_details( $blog_id )->path, '/' );
 
-		// Don't make things complicated, if www just ignore, edge case.
+		// Don't make things complicated, if www just ignore. Edge case.
 		if ( 'www' === $slug ) {
 			return;
 		}
 
-		// Get the network domain and path.
 		$network_url = $this->get_network_url_parts();
+		$new_domain  = $slug . '.' . $network_url['domain'];
+		$new_url     = esc_url( untrailingslashit( $network_url['scheme'] . $new_domain . $network_url['path'] ) );
 
-		// Build the new URL.
-		$new_domain = $slug . '.' . $network_url['domain'];
-		$new_url    = esc_url( untrailingslashit( $network_url['scheme'] . $new_domain . $network_url['path'] ) );
-
-		// The ol' switcher'oo.
 		switch_to_blog( $blog_id );
 
 		/**
@@ -155,7 +150,6 @@ class Pseudo_Subdomain_Network {
 		update_option( 'home', $new_url );
 		update_option( 'siteurl', $new_url );
 
-		// The ol' switcher'oo, back to the network admin.
 		restore_current_blog();
 	}
 
