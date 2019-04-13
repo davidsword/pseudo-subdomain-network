@@ -30,8 +30,8 @@ class SampleTest extends WP_UnitTestCase {
 		$blog_id  = $this->factory()->blog->create( $new_site );
 
 		// fake the requirments, as if checkbox was selected and form submitted.
-		$_POST['blog']['domain_map']   = '1';
-		$_REQUEST['_wpnonce_add-blog'] = wp_create_nonce( 'add-blog' );
+		$_POST['blog']['domain_map'] = '1';
+		$_POST['_wpnonce_add-blog']  = wp_create_nonce( 'add-blog' );
 
 		$network = new Pseudo_Subdomain_Network();
 		$network->map_to_subdomain( $blog_id );
