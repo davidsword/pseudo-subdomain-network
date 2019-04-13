@@ -23,16 +23,14 @@ jQuery(document).ready( function($) {
 		var slug = siteaddress.val();
 		subdomainmapping.text( slug );
 
-		// This setting is a little confusing when there's no slug. Toggle some things for +UX.
+		// Our added form field is a little confusing when there's no slug. Toggle some things for +UX.
 		if ( 0 === slug.length ) {
-			console.dir( 'disabled' );
 			$('#domain-map').removeAttr( 'checked' );
 			$('#domain-map').attr( 'disabled', true );
 			$('label[for=domain-map]').css( 'opacity', '0.75' );
 			$('#psdn--descirption-enabled').hide();
 			$('#psdn--descirption-disabled').show().css( 'opacity', '0.75' );
 		} else {
-			console.dir( 'not disabled' );
 			$('#domain-map').attr( 'checked', true );
 			$('#domain-map').removeAttr( 'disabled' );
 			$('label[for=domain-map]').css( 'opacity', '1' );
