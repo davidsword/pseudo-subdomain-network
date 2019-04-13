@@ -13,7 +13,7 @@ class SampleTest extends WP_UnitTestCase {
 	/**
 	 * Test the the site's domain, home, and siteurl are all modified when selected to.
 	 */
-	public function test__Network_pseudo_Sub_Domains__map_to_subdomain() {
+	public function test__Pseudo_Subdomain_Network__map_to_subdomain() {
 
 		// Create user and blog.
 		$new_user = [
@@ -33,7 +33,7 @@ class SampleTest extends WP_UnitTestCase {
 		$_POST['blog']['domain_map']   = '1';
 		$_REQUEST['_wpnonce_add-blog'] = wp_create_nonce( 'add-blog' );
 
-		$network = new Network_pseudo_Sub_Domains();
+		$network = new Pseudo_Subdomain_Network();
 		$network->map_to_subdomain( $blog_id );
 
 		switch_to_blog( $blog_id );
@@ -51,8 +51,8 @@ class SampleTest extends WP_UnitTestCase {
 	/**
 	 * Test that the correct parts of the network URL are returned.
 	 */
-	public function test__Network_pseudo_Sub_Domains__get_network_url_parts() {
-		$network = new Network_pseudo_Sub_Domains();
+	public function test__Pseudo_Subdomain_Network__get_network_url_parts() {
+		$network = new Pseudo_Subdomain_Network();
 		$url     = $network->get_network_url_parts();
 		$this->assertEquals( $url['scheme'], 'http://', 'scheme is incorrect' );
 		$this->assertEquals( $url['domain'], 'example.org', 'domain is incorrect' );

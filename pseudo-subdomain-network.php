@@ -7,7 +7,7 @@
  * Author URI:      https://davidsword.ca/
  * Text Domain:     psdn
  * Domain Path:     /languages
- * Version:         1.1.2
+ * Version:         1.1.3
  * Network:         true
  *
  * @package         pseudo-subdomain-network
@@ -26,9 +26,9 @@ if ( ! is_admin() || ! is_multisite() || is_subdomain_install() ) {
 }
 
 /**
- * Network_pseudo_Sub_Domains
+ * Pseudo_Subdomain_Network
  */
-class Network_pseudo_Sub_Domains {
+class Pseudo_Subdomain_Network {
 
 	/**
 	 * Build'r up!
@@ -113,7 +113,7 @@ class Network_pseudo_Sub_Domains {
 	 * @param int $blog_id the ID of the blog that was just created.
 	 */
 	public function map_to_subdomain( $blog_id ) {
-		if ( false === check_admin_referer( 'add-blog', '_wpnonce_add-blog' ) ) {
+		if ( ! isset( $_POST['_wpnonce_add-blog'] ) || ! wp_verify_nonce( $_POST['_wpnonce_add-blog'], 'add-blog' ) ) { //phpcs:ignore
 			wp_die( esc_html__( 'Nice try.', 'psdn' ) );
 		}
 		if ( ! current_user_can( 'manage_sites' ) ) {
@@ -179,4 +179,4 @@ class Network_pseudo_Sub_Domains {
 
 }
 
-new Network_pseudo_Sub_Domains();
+new Pseudo_Subdomain_Network();
