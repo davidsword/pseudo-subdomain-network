@@ -74,7 +74,7 @@ No. This plugin only works when the network is a Subdirectories install.
 * **April 12, 2019**
 * Add tests instructions
 * Improve changlog
-* Improve change classname to match plugin better
+* Improve classname to match plugin better
 * Change nonce check from check_admin_referer to verify nonce
 
 = 1.1.2 =
