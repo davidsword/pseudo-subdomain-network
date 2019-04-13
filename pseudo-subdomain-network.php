@@ -113,7 +113,7 @@ class Pseudo_Subdomain_Network {
 	 * @param int $blog_id the ID of the blog that was just created.
 	 */
 	public function map_to_subdomain( $blog_id ) {
-		if ( false === check_admin_referer( 'add-blog', '_wpnonce_add-blog' ) ) {
+		if ( ! isset( $_POST['_wpnonce_add-blog'] ) || ! wp_verify_nonce( $_POST['_wpnonce_add-blog'], 'add-blog' ) ) { //phpcs:ignore
 			wp_die( esc_html__( 'Nice try.', 'psdn' ) );
 		}
 		if ( ! current_user_can( 'manage_sites' ) ) {
