@@ -4,7 +4,7 @@ Donate link:       https://wordpressfoundation.org/donate/
 Tags:              network, multisite, subdomain, domain map, mapping
 Requires at least: 5.0
 Tested up to:      5.1.1
-Stable tag:        1.1.2
+Stable tag:        1.1.3
 Requires PHP:      7.1
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,9 +71,11 @@ No. This plugin only works when the network is a Subdirectories install.
 == Changelog ==
 
 = 1.1.3 =
-* ** ?? **
+* **April 12, 2019**
 * Add tests instructions
 * Improve changlog
+* Improve change classname to match plugin better
+* Change nonce check from check_admin_referer to verify nonce
 
 = 1.1.2 =
 * **April 12, 2019**
